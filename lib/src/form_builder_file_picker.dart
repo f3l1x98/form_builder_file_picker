@@ -100,7 +100,7 @@ class FormBuilderFilePicker
     this.customFileViewerBuilder,
   }) : super(
           builder: (FormFieldState<List<PlatformFile>?> field) {
-            final state = field as _FormBuilderFilePickerState;
+            final state = field as FormBuilderFilePickerState;
 
             return InputDecorator(
               decoration: state.decoration.copyWith(
@@ -138,10 +138,10 @@ class FormBuilderFilePicker
 
   @override
   FormBuilderFieldDecorationState<FormBuilderFilePicker, List<PlatformFile>>
-      createState() => _FormBuilderFilePickerState();
+      createState() => FormBuilderFilePickerState();
 }
 
-class _FormBuilderFilePickerState extends FormBuilderFieldDecorationState<
+class FormBuilderFilePickerState extends FormBuilderFieldDecorationState<
     FormBuilderFilePicker, List<PlatformFile>> {
   /// Image File Extensions.
   ///
@@ -252,7 +252,7 @@ class _FormBuilderFilePickerState extends FormBuilderFieldDecorationState<
                               alignment: Alignment.center,
                               color: theme.primaryColor,
                               child: Icon(
-                                getIconData(files[index].extension!),
+                                _getIconData(files[index].extension!),
                                 color: Colors.white,
                                 size: 56,
                               ),
@@ -305,7 +305,7 @@ class _FormBuilderFilePickerState extends FormBuilderFieldDecorationState<
     );
   }
 
-  IconData getIconData(String fileExtension) {
+  IconData _getIconData(String fileExtension) {
     final lowerCaseFileExt = fileExtension.toLowerCase();
     if (imageFileExts.contains(lowerCaseFileExt)) return Icons.image;
     // Check if the file is an image first (because there is a shared variable
